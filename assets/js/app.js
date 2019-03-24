@@ -47,11 +47,11 @@ d3.csv("data.csv")
         });
 
         var xLinearScale = d3.scaleLinear()
-            .domain([25, d3.max(censusData, d => d.age)])
+            .domain([8, d3.max(censusData, d => d.poverty)])
             .range([0, width]);
 
         var yLinearScale = d3.scaleLinear()
-            .domain([0, d3.max(censusData, d => d.healthcare)])
+            .domain([18, d3.max(censusData, d => d.obesity)])
             .range([height, 0]);
 
         var bottomAxis = d3.axisBottom(xLinearScale);
@@ -68,8 +68,8 @@ d3.csv("data.csv")
             .data(censusData)
             .enter()
             .append("circle")
-            .attr("cx", d => xLinearScale(d.age))
-            .attr("cy", d => yLinearScale(d.healthcare))
+            .attr("cx", d => xLinearScale(d.poverty))
+            .attr("cy", d => yLinearScale(d.obesity))
             .attr("r", "15")
             .attr("fill", "lightblue")
             .attr("opacity", ".5");
@@ -98,11 +98,11 @@ d3.csv("data.csv")
             .attr("x", 0 - (height / 2))
             .attr("dy", "1em")
             .attr("class", "axisText")
-            .text("Healthcare Rate");
+            .text("Obesity Rate (%)");
 
         chartGroup.append("text")
             .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
             .attr("class", "axisText")
-            .text("Age");
+            .text("Poverty Rate (%)");
 
     });
